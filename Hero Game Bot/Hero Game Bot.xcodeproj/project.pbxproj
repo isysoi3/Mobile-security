@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		9E8D2CED505B73AD236378D8 /* Pods_Hero_Game_Bot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F558BED7D70EE4937BA44B6 /* Pods_Hero_Game_Bot.framework */; };
+		D3094A5A222ADA230046E444 /* ViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3094A58222ADA230046E444 /* ViewProtocol.swift */; };
+		D3094A5C222ADA590046E444 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3094A5B222ADA590046E444 /* Presenter.swift */; };
+		D3094A5E222ADDCF0046E444 /* GameURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3094A5D222ADDCF0046E444 /* GameURLs.swift */; };
 		D3975250222AD36E00F37B53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D397524F222AD36E00F37B53 /* AppDelegate.swift */; };
 		D3975252222AD36E00F37B53 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3975251222AD36E00F37B53 /* ViewController.swift */; };
 		D3975257222AD36F00F37B53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3975256222AD36F00F37B53 /* Assets.xcassets */; };
@@ -18,6 +21,9 @@
 		21CBC9C0A12B44024C8BEF22 /* Pods-Hero Game Bot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hero Game Bot.debug.xcconfig"; path = "Target Support Files/Pods-Hero Game Bot/Pods-Hero Game Bot.debug.xcconfig"; sourceTree = "<group>"; };
 		8F558BED7D70EE4937BA44B6 /* Pods_Hero_Game_Bot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hero_Game_Bot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0B97C385398BCE2D4064DF1 /* Pods-Hero Game Bot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hero Game Bot.release.xcconfig"; path = "Target Support Files/Pods-Hero Game Bot/Pods-Hero Game Bot.release.xcconfig"; sourceTree = "<group>"; };
+		D3094A59222ADA230046E444 /* Base */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Base; path = Base.lproj/ViewProtocol.swift; sourceTree = "<group>"; };
+		D3094A5B222ADA590046E444 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		D3094A5D222ADDCF0046E444 /* GameURLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameURLs.swift; sourceTree = "<group>"; };
 		D397524C222AD36E00F37B53 /* Hero Game Bot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hero Game Bot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D397524F222AD36E00F37B53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3975251222AD36E00F37B53 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -38,6 +44,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D3094A5F222ADE9A0046E444 /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				D3094A58222ADA230046E444 /* ViewProtocol.swift */,
+				D3975251222AD36E00F37B53 /* ViewController.swift */,
+				D3094A5B222ADA590046E444 /* Presenter.swift */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		D3094A60222ADEA60046E444 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D3094A5D222ADDCF0046E444 /* GameURLs.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D3975243222AD36E00F37B53 = {
 			isa = PBXGroup;
 			children = (
@@ -59,8 +83,9 @@
 		D397524E222AD36E00F37B53 /* Hero Game Bot */ = {
 			isa = PBXGroup;
 			children = (
+				D3094A60222ADEA60046E444 /* Model */,
+				D3094A5F222ADE9A0046E444 /* Screen */,
 				D397524F222AD36E00F37B53 /* AppDelegate.swift */,
-				D3975251222AD36E00F37B53 /* ViewController.swift */,
 				D3975256222AD36F00F37B53 /* Assets.xcassets */,
 				D3975258222AD36F00F37B53 /* LaunchScreen.storyboard */,
 				D397525B222AD36F00F37B53 /* Info.plist */,
@@ -205,6 +230,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3975252222AD36E00F37B53 /* ViewController.swift in Sources */,
+				D3094A5A222ADA230046E444 /* ViewProtocol.swift in Sources */,
+				D3094A5C222ADA590046E444 /* Presenter.swift in Sources */,
+				D3094A5E222ADDCF0046E444 /* GameURLs.swift in Sources */,
 				D3975250222AD36E00F37B53 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,6 +240,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		D3094A58222ADA230046E444 /* ViewProtocol.swift */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D3094A59222ADA230046E444 /* Base */,
+			);
+			name = ViewProtocol.swift;
+			sourceTree = "<group>";
+		};
 		D3975258222AD36F00F37B53 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
