@@ -32,6 +32,13 @@ class Presenter {
         captcha.focus()
         """
     
+    let battleScript = """
+        var fightButton = document.getElementsByClassName("button_medium")[0];
+        if (fightButton) {
+            fightButton.click();
+        }
+    """
+    
 }
 
 extension Presenter {
@@ -57,9 +64,11 @@ extension Presenter {
         case GameURLsEnum.campaign:
             setNextPageToWebViewWithDelay(url: GameURLsEnum.battle)
         case GameURLsEnum.battle:
-            setNextPageToWebViewWithDelay(url: GameURLsEnum.battle)
+            view.evaluateJavaScript(battleScript)
         default:
-            setNextPageToWebViewWithDelay(url: GameURLsEnum.game)
+            if url.absoluteString.contains("/game/battle/results/") {
+                setNextPageToWebViewWithDelay(url: GameURLsEnum.battle)
+            }
         }
     }
     
