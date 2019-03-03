@@ -15,6 +15,7 @@ class Presenter {
     private var isBotActive: Bool = false {
         didSet {
             if isBotActive {
+                //TODO: go to ne
                 setNextPageToWebViewWithDelay(url: GameURLsEnum.login)
             }
         }
@@ -33,11 +34,23 @@ class Presenter {
         """
     
     let battleScript = """
-        var fightButton = document.getElementsByClassName("button_medium")[0];
-        if (fightButton) {
-            fightButton.click();
-        }
+            var fightButton = document.getElementsByClassName("button_medium")[0];
+            if (fightButton) {
+                window.webkit.messageHandlers.iosHandler.postMessage(fightButton.getAttribute("href"));
+                fightButton.click()
+            }
     """
+    
+    
+//    let battleScript = """
+//    window.webkit.messageHandlers.iosHandler.postMessage('11');
+//        $(document).ready(function(){
+//            var fightButton = document.getElementsByClassName("button_medium")[0];
+//            if (fightButton) {
+//                window.webkit.messageHandlers.iosHandler.postMessage(fightButton.getAttribute("href"));
+//            }
+//        });
+//    """
     
 }
 
@@ -46,7 +59,7 @@ extension Presenter {
     func hanldeViewDidLoad(view: ViewProtocol) {
         self.view = view
         
-        view.loadURLWithScript(GameURLsEnum.login)
+        view.loadURLWithScript(GameURLsEnum.game)
     }
     
     func hanldeWebViewDidLoadPage(url: URL?) {
@@ -55,7 +68,7 @@ extension Presenter {
             view.loadURLWithScript(GameURLsEnum.login)
             return
         }
-       
+        
         switch url {
         case GameURLsEnum.login:
             view.evaluateJavaScript(loginScript)
@@ -64,10 +77,13 @@ extension Presenter {
         case GameURLsEnum.campaign:
             setNextPageToWebViewWithDelay(url: GameURLsEnum.battle)
         case GameURLsEnum.battle:
-            view.evaluateJavaScript(battleScript)
+            evaluateJavaScriptInWebViewWithDelay(script: battleScript)
         default:
             if url.absoluteString.contains("/game/battle/results/") {
                 setNextPageToWebViewWithDelay(url: GameURLsEnum.battle)
+            } else {
+                view.setBotActivity(false)
+               // setNextPageToWebViewWithDelay(url: GameURLsEnum.login)
             }
         }
     }
@@ -83,6 +99,12 @@ private extension Presenter {
     func setNextPageToWebViewWithDelay(url: URL) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3 + Double.random(in: 1...4)) { [weak self] in
             self?.view.loadURLWithScript(url)
+        }
+    }
+    
+    func evaluateJavaScriptInWebViewWithDelay(script: String) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3 + Double.random(in: 1...2)) { [weak self] in
+            self?.view.evaluateJavaScript(script)
         }
     }
     

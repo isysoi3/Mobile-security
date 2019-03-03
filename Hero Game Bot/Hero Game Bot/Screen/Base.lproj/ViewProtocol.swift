@@ -14,4 +14,6 @@ protocol ViewProtocol: class {
     
     func evaluateJavaScript(_ script: String)
     
+    func setBotActivity(_ isActive: Bool)
+    
 }

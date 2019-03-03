@@ -31,8 +31,6 @@ class ViewController: UIViewController {
         return label
     }()
     
-    private let contentController = WKUserContentController()
-    
     let presenter = Presenter()
     
     // MARK: - view configuring
@@ -52,8 +50,7 @@ class ViewController: UIViewController {
         let config = WKWebViewConfiguration()
         config.userContentController.add(self,
                                          name: presenter.messageHandlerName)
-        config.userContentController = contentController
-       
+        
         webView = WKWebView(frame: .zero,
                             configuration: config)
         webView.navigationDelegate = self
@@ -93,6 +90,17 @@ class ViewController: UIViewController {
         presenter.handleSwitchChangedValue(sender.isOn)
     }
     
+    private func showAlert(title: String?, message: String?) {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok",
+                                      style: .default,
+                                      handler: {_ in alert.dismiss(animated: true) }))
+        
+        present(alert, animated: true)
+    }
+    
 }
 
 
@@ -103,10 +111,12 @@ extension ViewController: ViewProtocol {
     }
     
     func evaluateJavaScript(_ script: String) {
-        let userScript = WKUserScript(source: script,
-                                      injectionTime: .atDocumentEnd,
-                                      forMainFrameOnly: true)
-        contentController.addUserScript(userScript)
+        webView.evaluateJavaScript(script, completionHandler: .none)
+    }
+    
+    func setBotActivity(_ isActive: Bool) {
+        botSwitch.isOn = isActive
+        showAlert(title: .none, message: "Бот был \(isActive ? "включен" : "выключен")")
     }
     
 }
@@ -115,7 +125,7 @@ extension ViewController: WKScriptMessageHandler {
     
     func userContentController(_ userContentController: WKUserContentController,
                                didReceive message: WKScriptMessage) {
-        
+        print(message.body)
     }
     
     
@@ -128,6 +138,5 @@ extension ViewController: WKNavigationDelegate {
             self?.presenter.hanldeWebViewDidLoadPage(url: webView.url)
         }
     }
-    
-    
+
 }
