@@ -11,9 +11,16 @@ import Foundation
 enum GameURLsEnum {
     
     static let base = URL(string: "http://g.meni.mobi/")!
+    
     static let login = URL(string: "http://g.meni.mobi/login")!
+    
+    static let assignments = URL(string: "http://g.meni.mobi/game/assignments")!
+    
     static let game = URL(string: "http://g.meni.mobi/game")!
+    
     static let campaign = URL(string: "http://g.meni.mobi/game/campaign")!
+    
     static let battle = URL(string: "http://g.meni.mobi/game/battle/mercenary/new")!
+    
     
 }
