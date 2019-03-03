@@ -15,13 +15,14 @@ class Presenter {
     private var isBotActive: Bool = false {
         didSet {
             if isBotActive {
-                //TODO: go to ne
-                setNextPageToWebViewWithDelay(url: GameURLsEnum.login)
+                hanldeWebViewDidLoadPage(url: currentURL)
             }
         }
     }
     
     private weak var view: ViewProtocol!
+    
+    private var currentURL: URL
     
     let loginScript = """
         var username = document.getElementById('user_name');
@@ -36,21 +37,40 @@ class Presenter {
     let battleScript = """
             var fightButton = document.getElementsByClassName("button_medium")[0];
             if (fightButton) {
-                window.webkit.messageHandlers.iosHandler.postMessage(fightButton.getAttribute("href"));
+                window.webkit.messageHandlers.iosHandler.postMessage(`battleHref = ${fightButton.getAttribute("href")} `);
                 fightButton.click()
             }
     """
+
+    let validationScript = """
+        var currentTimer = document.getElementById ('current_game_time');
+        if (currentTimer) {
+            window.webkit.messageHandlers.iosHandler.postMessage(`timer = ${currentTimer.textContent.trim()}`);
+        }
     
+        var currentAttemps = document.getElementById ('remaining_fights_count');
+        if (currentAttemps) {
+            window.webkit.messageHandlers.iosHandler.postMessage(`fights = ${currentAttemps.textContent.trim()}`);
+        }
+
+        var currentHealth = document.getElementById ( "current_user_health" );
+        if (currentHealth) {
+            window.webkit.messageHandlers.iosHandler.postMessage(`health = ${currentHealth.textContent.trim()}`);
+        }
+
+        var notif = document.getElementById('notifications_block');
+        if (notif) {
+            var alertChild = notif.children[0].children[0].children[0].children[1];
+            if (alertChild) {
+                window.webkit.messageHandlers.iosHandler.postMessage(`notif = ${alertChild.textContent.trim()}`);
+            }
+        }
+    """
     
-//    let battleScript = """
-//    window.webkit.messageHandlers.iosHandler.postMessage('11');
-//        $(document).ready(function(){
-//            var fightButton = document.getElementsByClassName("button_medium")[0];
-//            if (fightButton) {
-//                window.webkit.messageHandlers.iosHandler.postMessage(fightButton.getAttribute("href"));
-//            }
-//        });
-//    """
+    init() {
+        currentURL = GameURLsEnum.login
+    }
+    
     
 }
 
@@ -59,19 +79,21 @@ extension Presenter {
     func hanldeViewDidLoad(view: ViewProtocol) {
         self.view = view
         
-        view.loadURLWithScript(GameURLsEnum.game)
+        view.loadURLWithScript(currentURL)
     }
     
     func hanldeWebViewDidLoadPage(url: URL?) {
-        guard isBotActive else { return }
         guard let url = url else {
             view.loadURLWithScript(GameURLsEnum.login)
             return
         }
-        
+        currentURL = url
+        guard isBotActive else { return }
         switch url {
         case GameURLsEnum.login:
             view.evaluateJavaScript(loginScript)
+        case GameURLsEnum.assignments:
+            setNextPageToWebViewWithDelay(url: GameURLsEnum.game)
         case GameURLsEnum.game:
             setNextPageToWebViewWithDelay(url: GameURLsEnum.campaign)
         case GameURLsEnum.campaign:
@@ -82,14 +104,49 @@ extension Presenter {
             if url.absoluteString.contains("/game/battle/results/") {
                 setNextPageToWebViewWithDelay(url: GameURLsEnum.battle)
             } else {
-                view.setBotActivity(false)
-               // setNextPageToWebViewWithDelay(url: GameURLsEnum.login)
+//                view.setBotActivity(false)
+//                view.showAlert(title: .none,
+//                               message: "Бот был выключен")
+                setNextPageToWebViewWithDelay(url: GameURLsEnum.game)
             }
         }
     }
     
     func handleSwitchChangedValue(_ newVlaue: Bool) {
         isBotActive = newVlaue
+    }
+    
+    func hanldeMessageFromWebView(message: String) {
+        print(message)
+        guard let stringValue = message.split(separator: "=")
+            .last?
+            .trimmingCharacters(in: CharacterSet(arrayLiteral: " ")) else { return }
+        print(stringValue)
+        
+        guard isBotActive else { return }
+        
+        var alertMessage: String? = .none
+        
+        if message.contains("fights = ") {
+            guard let fightsAvailable = stringValue.split(separator: "/").first,
+                fightsAvailable == "0" else { return }
+            alertMessage = "Бот был выключен: нет попыток для битв"
+        } else if message.contains("timer = ") {
+
+        } else if message.contains("health = ") {
+            guard let health = Int(stringValue),
+                health < 80 else { return }
+            alertMessage = "Бот был выключен: здоровья очень мало"
+        } else if message.contains("notif = ") {
+            alertMessage = "Бот был выключен: \(stringValue)"
+        }
+        
+        if alertMessage != nil {
+            isBotActive = false
+            view.setBotActivity(isBotActive)
+            view.showAlert(title: .none,
+                           message: alertMessage)
+        }
     }
     
 }

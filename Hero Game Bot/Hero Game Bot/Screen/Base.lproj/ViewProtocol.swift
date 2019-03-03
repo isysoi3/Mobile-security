@@ -16,4 +16,6 @@ protocol ViewProtocol: class {
     
     func setBotActivity(_ isActive: Bool)
     
+    func showAlert(title: String?, message: String?) 
+    
 }

@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     let botInfoLabel: UILabel = {
         let label = UILabel()
         
-        label.text = "Активин ли бот?"
+        label.text = "Активен ли бот?"
         
         return label
     }()
@@ -90,17 +90,6 @@ class ViewController: UIViewController {
         presenter.handleSwitchChangedValue(sender.isOn)
     }
     
-    private func showAlert(title: String?, message: String?) {
-        let alert = UIAlertController(title: title,
-                                      message: message,
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok",
-                                      style: .default,
-                                      handler: {_ in alert.dismiss(animated: true) }))
-        
-        present(alert, animated: true)
-    }
-    
 }
 
 
@@ -116,7 +105,17 @@ extension ViewController: ViewProtocol {
     
     func setBotActivity(_ isActive: Bool) {
         botSwitch.isOn = isActive
-        showAlert(title: .none, message: "Бот был \(isActive ? "включен" : "выключен")")
+    }
+    
+    func showAlert(title: String?, message: String?) {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok",
+                                      style: .default,
+                                      handler: {_ in alert.dismiss(animated: true) }))
+        
+        present(alert, animated: true)
     }
     
 }
@@ -125,7 +124,8 @@ extension ViewController: WKScriptMessageHandler {
     
     func userContentController(_ userContentController: WKUserContentController,
                                didReceive message: WKScriptMessage) {
-        print(message.body)
+        guard let body = message.body as? String else { return }
+        presenter.hanldeMessageFromWebView(message: body)
     }
     
     
@@ -137,6 +137,7 @@ extension ViewController: WKNavigationDelegate {
         webView.evaluateJavaScript("document.readyState") { [weak self] _, _ in
             self?.presenter.hanldeWebViewDidLoadPage(url: webView.url)
         }
+        webView.evaluateJavaScript(presenter.validationScript, completionHandler: .none)
     }
 
 }
