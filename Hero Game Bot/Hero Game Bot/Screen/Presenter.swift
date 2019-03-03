@@ -10,6 +10,8 @@ import Foundation
 
 class Presenter {
     
+    // MARK: - properties
+    
     let messageHandlerName: String = "iosHandler"
     
     private var isBotActive: Bool = false {
@@ -24,6 +26,7 @@ class Presenter {
     
     private var currentURL: URL
     
+    // MARK: - scripts
     let loginScript = """
         var username = document.getElementById('user_name');
         var password = document.getElementById('user_password');
@@ -67,13 +70,13 @@ class Presenter {
         }
     """
     
+    // MARK: - init
     init() {
         currentURL = GameURLsEnum.login
     }
-    
-    
 }
 
+// MARK: - handling view signals
 extension Presenter {
     
     func hanldeViewDidLoad(view: ViewProtocol) {
@@ -151,6 +154,7 @@ extension Presenter {
     
 }
 
+// MARK: - private presenter methods
 private extension Presenter {
     
     func setNextPageToWebViewWithDelay(url: URL) {

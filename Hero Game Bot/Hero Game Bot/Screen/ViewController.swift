@@ -93,6 +93,7 @@ class ViewController: UIViewController {
 }
 
 
+// MARK: - ViewController: ViewProtoco
 extension ViewController: ViewProtocol {
     
     func loadURLWithScript(_ url: URL) {
@@ -120,6 +121,7 @@ extension ViewController: ViewProtocol {
     
 }
 
+// MARK: - ViewController: WKScriptMessageHandler
 extension ViewController: WKScriptMessageHandler {
     
     func userContentController(_ userContentController: WKUserContentController,
@@ -131,6 +133,7 @@ extension ViewController: WKScriptMessageHandler {
     
 }
 
+// MARK: - ViewController: WKNavigationDelegate
 extension ViewController: WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
