@@ -18,6 +18,7 @@ class GamePresenter {
     
     private var isBotActive: Bool = false {
         didSet {
+            view.setBotActivity(isBotActive)
             if isBotActive {
                 hanldeWebViewDidLoadPage(url: currentURL)
             }
@@ -27,6 +28,8 @@ class GamePresenter {
     private weak var view: GameViewProtocol!
     
     private var currentURL: URL
+    
+    private var timer: Timer?
     
     // MARK: - init
     init() {
@@ -96,8 +99,15 @@ extension GamePresenter {
             
             if fightsAvailable == "0" {
                 alertMessage = "Бот был выключен: нет попыток для битв. Но будет включен через \(timer)"
+                var timerValue: Double = 0
+                timer.split(separator: ":").enumerated().forEach { index, element in
+                    guard let elementInt = Double(element) else { return }
+                    timerValue += elementInt * pow(60.0, Double(2 - index))
+                }
+                startTimer(value: timerValue)
             } else if health < 80 {
-                alertMessage = "Бот был выключен: здоровья очень мало. Но будет включен через \(timer)"
+                alertMessage = "Бот был выключен: здоровья очень мало. Но будет включен через 5:00"
+                startTimer(value: 300)
             }
         case 1 where message.contains("captcha"):
             guard let base64 = values.first else { return }
@@ -124,6 +134,15 @@ extension GamePresenter {
 
 // MARK: - private presenter methods
 private extension GamePresenter {
+    
+    func startTimer(value: Double) {
+        timer = Timer.scheduledTimer(withTimeInterval: value,
+                                     repeats: false) { [weak self] _ in
+                                        self?.isBotActive.toggle()
+                                        self?.view.showAlert(title: .none,
+                                                            message: "Бот снова включен")
+        }
+    }
     
     func setNextPageToWebViewWithDelay(url: URL) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3 + Double.random(in: 1...4)) { [unowned self] in
