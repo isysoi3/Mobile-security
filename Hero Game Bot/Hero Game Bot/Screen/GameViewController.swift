@@ -106,6 +106,7 @@ extension GameViewController: GameViewProtocol {
     
     func setBotActivity(_ isActive: Bool) {
         botSwitch.isOn = isActive
+        webView.isUserInteractionEnabled = !isActive
     }
     
     func showAlert(title: String?, message: String?) {
