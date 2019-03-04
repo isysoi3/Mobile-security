@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  GameViewController.swift
 //  Hero Game Bot
 //
 //  Created by Ilya Sysoi on 3/2/19.
@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 import SnapKit
 
-class ViewController: UIViewController {
+class GameViewController: UIViewController {
 
     // MARK: - properties
     var webView: WKWebView!
@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         return label
     }()
     
-    let presenter = Presenter()
+    let presenter = GamePresenter()
     
     // MARK: - view configuring
     override func viewDidLoad() {
@@ -93,8 +93,8 @@ class ViewController: UIViewController {
 }
 
 
-// MARK: - ViewController: ViewProtoco
-extension ViewController: ViewProtocol {
+// MARK: - GameViewController: GameViewProtocol
+extension GameViewController: GameViewProtocol {
     
     func loadURLWithScript(_ url: URL) {
         webView.load(URLRequest(url: url))
@@ -122,7 +122,7 @@ extension ViewController: ViewProtocol {
 }
 
 // MARK: - ViewController: WKScriptMessageHandler
-extension ViewController: WKScriptMessageHandler {
+extension GameViewController: WKScriptMessageHandler {
     
     func userContentController(_ userContentController: WKUserContentController,
                                didReceive message: WKScriptMessage) {
@@ -134,7 +134,7 @@ extension ViewController: WKScriptMessageHandler {
 }
 
 // MARK: - ViewController: WKNavigationDelegate
-extension ViewController: WKNavigationDelegate {
+extension GameViewController: WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         webView.evaluateJavaScript("document.readyState") { [weak self] _, _ in

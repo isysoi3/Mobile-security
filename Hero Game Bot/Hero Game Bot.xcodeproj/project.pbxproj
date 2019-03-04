@@ -8,28 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		9E8D2CED505B73AD236378D8 /* Pods_Hero_Game_Bot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F558BED7D70EE4937BA44B6 /* Pods_Hero_Game_Bot.framework */; };
-		D3094A5A222ADA230046E444 /* ViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3094A58222ADA230046E444 /* ViewProtocol.swift */; };
-		D3094A5C222ADA590046E444 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3094A5B222ADA590046E444 /* Presenter.swift */; };
+		D3094A5A222ADA230046E444 /* GameViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3094A58222ADA230046E444 /* GameViewProtocol.swift */; };
+		D3094A5C222ADA590046E444 /* GamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3094A5B222ADA590046E444 /* GamePresenter.swift */; };
 		D3094A5E222ADDCF0046E444 /* GameURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3094A5D222ADDCF0046E444 /* GameURLs.swift */; };
 		D3975250222AD36E00F37B53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D397524F222AD36E00F37B53 /* AppDelegate.swift */; };
-		D3975252222AD36E00F37B53 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3975251222AD36E00F37B53 /* ViewController.swift */; };
+		D3975252222AD36E00F37B53 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3975251222AD36E00F37B53 /* GameViewController.swift */; };
 		D3975257222AD36F00F37B53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3975256222AD36F00F37B53 /* Assets.xcassets */; };
 		D397525A222AD36F00F37B53 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3975258222AD36F00F37B53 /* LaunchScreen.storyboard */; };
+		D3E87C17222D8A60007ADBC3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3E87C16222D8A60007ADBC3 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		21CBC9C0A12B44024C8BEF22 /* Pods-Hero Game Bot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hero Game Bot.debug.xcconfig"; path = "Target Support Files/Pods-Hero Game Bot/Pods-Hero Game Bot.debug.xcconfig"; sourceTree = "<group>"; };
 		8F558BED7D70EE4937BA44B6 /* Pods_Hero_Game_Bot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hero_Game_Bot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0B97C385398BCE2D4064DF1 /* Pods-Hero Game Bot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hero Game Bot.release.xcconfig"; path = "Target Support Files/Pods-Hero Game Bot/Pods-Hero Game Bot.release.xcconfig"; sourceTree = "<group>"; };
-		D3094A59222ADA230046E444 /* Base */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Base; path = Base.lproj/ViewProtocol.swift; sourceTree = "<group>"; };
-		D3094A5B222ADA590046E444 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		D3094A59222ADA230046E444 /* Base */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Base; path = Base.lproj/GameViewProtocol.swift; sourceTree = "<group>"; };
+		D3094A5B222ADA590046E444 /* GamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenter.swift; sourceTree = "<group>"; };
 		D3094A5D222ADDCF0046E444 /* GameURLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameURLs.swift; sourceTree = "<group>"; };
 		D397524C222AD36E00F37B53 /* Hero Game Bot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hero Game Bot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D397524F222AD36E00F37B53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D3975251222AD36E00F37B53 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D3975251222AD36E00F37B53 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		D3975256222AD36F00F37B53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3975259222AD36F00F37B53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D397525B222AD36F00F37B53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3E87C16222D8A60007ADBC3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,9 +49,9 @@
 		D3094A5F222ADE9A0046E444 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
-				D3094A58222ADA230046E444 /* ViewProtocol.swift */,
-				D3975251222AD36E00F37B53 /* ViewController.swift */,
-				D3094A5B222ADA590046E444 /* Presenter.swift */,
+				D3094A58222ADA230046E444 /* GameViewProtocol.swift */,
+				D3975251222AD36E00F37B53 /* GameViewController.swift */,
+				D3094A5B222ADA590046E444 /* GamePresenter.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -89,6 +91,7 @@
 				D3975256222AD36F00F37B53 /* Assets.xcassets */,
 				D3975258222AD36F00F37B53 /* LaunchScreen.storyboard */,
 				D397525B222AD36F00F37B53 /* Info.plist */,
+				D3E87C16222D8A60007ADBC3 /* GoogleService-Info.plist */,
 			);
 			path = "Hero Game Bot";
 			sourceTree = "<group>";
@@ -122,6 +125,7 @@
 				D3975249222AD36E00F37B53 /* Frameworks */,
 				D397524A222AD36E00F37B53 /* Resources */,
 				ED6FBB49289FEF690F575D19 /* [CP] Embed Pods Frameworks */,
+				F057A53BEB6AC407696440F2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -171,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D397525A222AD36F00F37B53 /* LaunchScreen.storyboard in Resources */,
+				D3E87C17222D8A60007ADBC3 /* GoogleService-Info.plist in Resources */,
 				D3975257222AD36F00F37B53 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,17 +214,51 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Hero Game Bot/Pods-Hero Game Bot-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hero Game Bot/Pods-Hero Game Bot-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F057A53BEB6AC407696440F2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Hero Game Bot/Pods-Hero Game Bot-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/GoogleMobileVision/GoogleMVTextDetectorResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMVTextDetectorResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hero Game Bot/Pods-Hero Game Bot-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -229,9 +268,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3975252222AD36E00F37B53 /* ViewController.swift in Sources */,
-				D3094A5A222ADA230046E444 /* ViewProtocol.swift in Sources */,
-				D3094A5C222ADA590046E444 /* Presenter.swift in Sources */,
+				D3975252222AD36E00F37B53 /* GameViewController.swift in Sources */,
+				D3094A5A222ADA230046E444 /* GameViewProtocol.swift in Sources */,
+				D3094A5C222ADA590046E444 /* GamePresenter.swift in Sources */,
 				D3094A5E222ADDCF0046E444 /* GameURLs.swift in Sources */,
 				D3975250222AD36E00F37B53 /* AppDelegate.swift in Sources */,
 			);
@@ -240,12 +279,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D3094A58222ADA230046E444 /* ViewProtocol.swift */ = {
+		D3094A58222ADA230046E444 /* GameViewProtocol.swift */ = {
 			isa = PBXVariantGroup;
 			children = (
 				D3094A59222ADA230046E444 /* Base */,
 			);
-			name = ViewProtocol.swift;
+			name = GameViewProtocol.swift;
 			sourceTree = "<group>";
 		};
 		D3975258222AD36F00F37B53 /* LaunchScreen.storyboard */ = {

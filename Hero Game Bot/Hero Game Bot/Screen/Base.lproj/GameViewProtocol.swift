@@ -1,5 +1,5 @@
 //
-//  ViewProtocol.swift
+//  GameViewProtocol.swift
 //  Hero Game Bot
 //
 //  Created by Ilya Sysoi on 3/2/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ViewProtocol: class {
+protocol GameViewProtocol: class {
     
     func loadURLWithScript(_ url: URL)
     
