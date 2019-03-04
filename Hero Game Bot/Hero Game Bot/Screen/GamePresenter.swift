@@ -28,59 +28,6 @@ class GamePresenter {
     
     private var currentURL: URL
     
-    // MARK: - scripts
-    let loginScript = """
-        var username = document.getElementById('user_name');
-        var password = document.getElementById('user_password');
-        var captcha = document.getElementById('captcha');
-
-        username.value = "isysoi";
-        password.value = "123456";
-        
-        function getBase64Image(img) {
-            
-            
-            return ;
-        };
-
-        var captchaImage = document.getElementsByClassName('captcha_image')[0].children[0];
-        if (captchaImage) {
-            var canvas = document.createElement("canvas");
-            canvas.width = captchaImage.width;
-            canvas.height = captchaImage.height;
-            
-            var ctx = canvas.getContext("2d");
-            ctx.drawImage(captchaImage, 0, 0);
-            
-            var dataURL = canvas.toDataURL("image/png");
-            window.webkit.messageHandlers.iosHandler.postMessage(`captcha ~ ${dataURL.replace(/^data:image\\/(png|jpg);base64,/, "")}`);
-        }
-
-        """
-    
-    let battleScript = """
-            var fightButton = document.getElementsByClassName("button_medium")[0];
-            if (fightButton) {
-                fightButton.click()
-            }
-    """
-    
-    let validationScript = """
-        var currentTimer = document.getElementById ('current_game_time');
-        var currentAttemps = document.getElementById ('remaining_fights_count');
-        var currentHealth = document.getElementById ( "current_user_health" );
-        
-
-        if (currentTimer, currentAttemps, currentHealth) {
-            window.webkit.messageHandlers.iosHandler.postMessage(`timer ~ ${currentTimer.textContent.trim()}\nfights ~ ${currentAttemps.textContent.trim()}\nhealth ~ ${currentHealth.textContent.trim()}`);
-        }
-
-        var notif = document.getElementById('notifications_block').children[0].children[0].children[0].children[1];
-        if (notif) {
-            window.webkit.messageHandlers.iosHandler.postMessage(`notif ~ ${alertChild.textContent.trim()}`);
-        }
-    """
-    
     // MARK: - init
     init() {
         currentURL = GameURLsEnum.login
@@ -106,7 +53,7 @@ extension GamePresenter {
         switch url {
         case GameURLsEnum.login:
             guard isBotActive else { return }
-            view.evaluateJavaScript(loginScript)
+            view.evaluateJavaScript(GameScripts.loginScript)
         case GameURLsEnum.assignments:
             setNextPageToWebViewWithDelay(url: GameURLsEnum.game)
         case GameURLsEnum.game:
@@ -114,7 +61,7 @@ extension GamePresenter {
         case GameURLsEnum.campaign:
             setNextPageToWebViewWithDelay(url: GameURLsEnum.battle)
         case GameURLsEnum.battle:
-            evaluateJavaScriptInWebViewWithDelay(script: battleScript)
+            evaluateJavaScriptInWebViewWithDelay(script: GameScripts.battleScript)
         default:
             if url.absoluteString.contains("/game/battle/results/") {
                 setNextPageToWebViewWithDelay(url: GameURLsEnum.battle)

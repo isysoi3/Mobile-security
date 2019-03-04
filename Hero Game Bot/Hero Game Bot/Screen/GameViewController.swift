@@ -140,7 +140,7 @@ extension GameViewController: WKNavigationDelegate {
         webView.evaluateJavaScript("document.readyState") { [weak self] _, _ in
             self?.presenter.hanldeWebViewDidLoadPage(url: webView.url)
         }
-        webView.evaluateJavaScript(presenter.validationScript, completionHandler: .none)
+        webView.evaluateJavaScript(GameScripts.validationScript, completionHandler: .none)
     }
 
 }
