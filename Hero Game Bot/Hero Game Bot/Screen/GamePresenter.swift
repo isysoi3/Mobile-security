@@ -136,6 +136,8 @@ extension GamePresenter {
 private extension GamePresenter {
     
     func startTimer(value: Double) {
+        timer?.invalidate()
+        
         var timerSeconds = value
         timer = Timer.scheduledTimer(
             withTimeInterval: 1,
