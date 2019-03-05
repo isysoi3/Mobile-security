@@ -31,6 +31,14 @@ class GameViewController: UIViewController {
         return label
     }()
     
+    private var heightConstraint: Constraint?
+    
+    let timerLabel: UILabel = {
+        let label = UILabel()
+        
+        return label
+    }()
+    
     let presenter = GamePresenter()
     
     // MARK: - view configuring
@@ -64,6 +72,7 @@ class GameViewController: UIViewController {
     private func addSubviews() {
         [webView,
          botInfoLabel,
+         timerLabel,
          botSwitch].forEach(view.addSubview)
     }
     
@@ -74,13 +83,19 @@ class GameViewController: UIViewController {
             make.right.equalTo(botSwitch.snp.right)
         }
         
+        timerLabel.snp.makeConstraints { make in
+            make.top.equalTo(botInfoLabel.snp.bottom).offset(5)
+            make.centerX.equalToSuperview()
+            heightConstraint = make.height.equalTo(0).constraint
+        }
+        
         botSwitch.snp.makeConstraints { make in
             make.centerY.equalTo(botInfoLabel)
             make.right.equalToSuperview().inset(10)
         }
         
         webView.snp.makeConstraints { make in
-            make.top.equalTo(botInfoLabel.snp.bottom).offset(10)
+            make.top.equalTo(timerLabel.snp.bottom).offset(10)
             make.left.right.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
@@ -107,6 +122,11 @@ extension GameViewController: GameViewProtocol {
     func setBotActivity(_ isActive: Bool) {
         botSwitch.isOn = isActive
         webView.isUserInteractionEnabled = !isActive
+    }
+    
+    func setCurrentTimerValue(_ value: String?) {
+        timerLabel.text = value
+        heightConstraint?.update(offset: value == nil ? 0 : 20)
     }
     
     func showAlert(title: String?, message: String?) {

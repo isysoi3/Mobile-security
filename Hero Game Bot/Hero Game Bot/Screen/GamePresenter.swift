@@ -136,11 +136,25 @@ extension GamePresenter {
 private extension GamePresenter {
     
     func startTimer(value: Double) {
-        timer = Timer.scheduledTimer(withTimeInterval: value,
-                                     repeats: false) { [weak self] _ in
-                                        self?.isBotActive.toggle()
-                                        self?.view.showAlert(title: .none,
-                                                            message: "Бот снова включен")
+        var timerSeconds = value
+        timer = Timer.scheduledTimer(
+            withTimeInterval: 1,
+            repeats: true) { [weak self] timer in
+                guard timerSeconds != 0 else {
+                    self?.view.setCurrentTimerValue(.none)
+                    self?.isBotActive.toggle()
+                    self?.view.showAlert(title: .none,
+                                         message: "Бот снова включен")
+                    timer.invalidate()
+                    return
+                }
+                var timerStringValue = ""
+                let minutes = Int(timerSeconds/60)
+                let seconds = Int(timerSeconds.truncatingRemainder(dividingBy: 60))
+                timerStringValue += (minutes >= 10 ? "" : "0") + "\(minutes):"
+                timerStringValue += (seconds >= 10 ? "" : "0") + "\(seconds)"
+                self?.view.setCurrentTimerValue(timerStringValue)
+                timerSeconds -= 1
         }
     }
     
