@@ -116,8 +116,8 @@ extension GamePresenter {
         case 1 where message.contains("notif"):
             guard let notif = values.first else { return }
             alertMessage = "Бот был выключен: \(notif)"
-        case 0:
-            fallthrough
+        case 0 where message.contains("hardCaptcha"):
+            alertMessage = "Бот был выключен: встречена сложная капча"
         default:
             return
         }

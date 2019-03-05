@@ -61,5 +61,11 @@ enum GameScripts {
         if (notif) {
             window.webkit.messageHandlers.iosHandler.postMessage(`notif ~ ${alertChild.textContent.trim()}`);
         }
+
+        var captchaHardImage = document.getElementsByClassName('captcha_images_row');
+        if (captchaHardImage.length != 0) {
+            window.webkit.messageHandlers.iosHandler.postMessage(`hardCaptcha ~`);
+        }
+    
     """
 }
